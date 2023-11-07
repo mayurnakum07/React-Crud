@@ -13,7 +13,7 @@ function AddMovies() {
     }
     addDoc(movieCollectionRef, { name })
       .then((response) => {
-        console.log(response.id);
+        console.log(response);
       })
       .catch((error) => {
         console.log(error.message);

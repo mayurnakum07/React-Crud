@@ -1,7 +1,8 @@
-import {  getDocs } from "firebase/firestore";
+import { deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { movieCollectionRef } from "../lib/firestore.collaction";
+import { db } from "../lib/init-firebase";
 
 function ListMovies() {
   const [listMovies, setListMovies] = useState([]);
@@ -25,6 +26,13 @@ function ListMovies() {
   useEffect(() => {
     getMovie();
   }, []);
+
+  const deleteMovie = (id) => {
+    const docRef = doc(db, "movie", id);
+    deleteDoc(docRef)
+      .then(() => console.log("Deleted"), getMovie())
+      .catch((error) => console.log(error));
+  };
   return (
     <div>
       <Container className="mt-5">
@@ -34,6 +42,14 @@ function ListMovies() {
           {listMovies.map((item) => (
             <li key={item.id}>
               {item.id} : {item.data.name}
+              <button
+                className="m-1"
+                onClick={() => {
+                  deleteMovie(item.id);
+                }}
+              >
+                🗑
+              </button>
             </li>
           ))}
         </ul>

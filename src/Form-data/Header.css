@@ -1,0 +1,25 @@
+.header-main {
+  max-height: 120px;
+  min-height: 70px;
+}
+
+.header-content {
+  display: flex;
+  gap: 50px;
+}
+.header-brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.manu-bar {
+  font-size: 18px;
+  gap: 10px;
+}
+
+a {
+  text-decoration: none;
+}

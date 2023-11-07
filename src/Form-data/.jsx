@@ -5,7 +5,7 @@ import { Button, Container, Spinner } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import "./App.css";
+import "../App.css";
 function RealtimeDatabase() {
   const [firebaseData, setFirebaseData] = useState([]);
   const [loading, setLoading] = useState(false);
