@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-
-function Form() {
+import "./App.css";
+function RealtimeDatabase() {
   const [firebaseData, setFirebaseData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [btnLoading, setBtnLoading] = useState(null);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -36,6 +38,7 @@ function Form() {
       );
       toast.success("Data posted successfully");
       console.log("Data posted successfully:", response);
+      getData();
     } catch (error) {
       toast.error(error.message);
       console.log(error);
@@ -44,6 +47,7 @@ function Form() {
 
   const getData = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
         "https://react-firebase-eee38-default-rtdb.firebaseio.com/React-Firebase.json"
       );
@@ -56,12 +60,30 @@ function Form() {
       setFirebaseData(dataArray);
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  const deleteData = async (id) => {
+    try {
+      setBtnLoading(id);
+      const response = await axios.delete(
+        `https://react-firebase-eee38-default-rtdb.firebaseio.com/React-Firebase/${id}.json`
+      );
+      getData();
+      console.log(response);
+      toast.success("Data deleted successfully");
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setBtnLoading(null);
+    }
+  };
 
   return (
     <div>
@@ -141,49 +163,59 @@ function Form() {
       </Container>
       <Container>
         <h1 className="text-center mb-4">Firebase Data</h1>
-        <table className="table table-hover table-bordered text-center">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Mobile no.</th>
-              <th>Message</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {firebaseData.map((item) => (
-              <tr key={item.name}>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.number}</td>
-                <td>{item.message}</td>
-                <td>
-                  <Button>
-                    Edit{" "}
-                    <i
-                      className="fa-solid fa-pen-to-square"
-                      style={{ color: "white" }}
-                    ></i>
-                  </Button>
-                </td>
-                <td>
-                  <Button className="bg-danger">
-                    Delete{" "}
-                    <i
-                      className="fa-solid fa-trash"
-                      style={{ color: "white" }}
-                    ></i>
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {loading ? (
+          <div style={{ position: "absolute", right: "50%" }}>
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <table className="table table-hover table-bordered text-center">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Mobile no.</th>
+                  <th>Message</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {firebaseData.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                    <td>{item.number}</td>
+                    <td>{item.message}</td>
+                    <td>
+                      <Button
+                        className="bg-danger"
+                        onClick={() => deleteData(item.id)}
+                        disabled={btnLoading === item.id}
+                      >
+                        {btnLoading === item.id ? (
+                          <Spinner animation="border" size="sm"></Spinner>
+                        ) : (
+                          <div>
+                            Delete{" "}
+                            <i
+                              className="fa-solid fa-trash"
+                              style={{ color: "white" }}
+                            ></i>
+                          </div>
+                        )}
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </Container>
     </div>
   );
 }
 
-export default Form;
+export default RealtimeDatabase;
