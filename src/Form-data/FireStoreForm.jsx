@@ -166,7 +166,11 @@ function FireStoreForm({ loading, setLoading }) {
           ) : null}
           <br />
 
-          <Button type="submit" className="w-50 offset-md-3 mt-3">
+          <Button
+            type="submit"
+            className="w-50 offset-md-3 mt-3"
+            disabled={loading === true}
+          >
             {loading ? (
               <div className="d-flex gap-2 align-items-center justify-content-center">
                 <Spinner animation="border" role="status"></Spinner>
