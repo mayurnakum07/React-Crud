@@ -7,6 +7,7 @@
   display: flex;
   gap: 50px;
 }
+
 .header-brand {
   display: flex;
   flex-direction: row;
@@ -23,3 +24,13 @@
 a {
   text-decoration: none;
 }
+
+.link-deep {
+  color: white;
+  font-size: 16px;
+}
+
+.link-deep:hover {
+  color: white;
+}
+

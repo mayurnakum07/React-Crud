@@ -1,19 +1,21 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useFormik } from "formik";
-import { Button, Container, Spinner } from "react-bootstrap";
-import * as Yup from "yup";
-import { auth } from "../../lib/init-firebase";
-import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { Button, Container, Spinner } from "react-bootstrap";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../library/init-firebase";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
 
-function LoginAuth({ loading, setLoading }) {
+function SignupAuth({ loading, setLoading }) {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+      name: "",
     },
     validationSchema: Yup.object({
+      name: Yup.string().trim().min(3).required(),
       email: Yup.string().trim().required(),
       password: Yup.string().min(8).trim().required(),
     }),
@@ -21,16 +23,19 @@ function LoginAuth({ loading, setLoading }) {
       console.log(values);
       setLoading(true);
       try {
-        const create = await signInWithEmailAndPassword(
+        const create = await createUserWithEmailAndPassword(
           auth,
           formik.values.email,
           formik.values.password
         );
+        await updateProfile(create.user, {
+          displayName: formik.values.name,
+        });
         console.log("create", create);
-        toast.success("Login successfully");
+        toast.success("create account & login successfully");
         navigate("/");
       } catch (error) {
-        toast.error("Sorry this account not exist");
+        toast.error("Sorry,this account already exist ");
       }
       setLoading(false);
       formik.resetForm();
@@ -40,12 +45,27 @@ function LoginAuth({ loading, setLoading }) {
   return (
     <div>
       <Container>
-        <h1 className="text-center mt-4 mb-4">Login</h1>
-        <Link to="/signupAuth">
-          <Button className="mb-3 float-end">Create new account</Button>
+        <h1 className="text-center mt-4 mb-4">Sign up</h1>
+        <Link to="/loginAuth">
+          <Button className="mb-3 float-end">Login</Button>
         </Link>
         <Container className="col-md-6 mt-5">
           <form onSubmit={formik.handleSubmit}>
+            <label className="form-label">name</label>
+            <input
+              name="name"
+              type="text"
+              className="form-control"
+              placeholder="Enter your name"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.name && formik.errors.name ? (
+              <p className="text-danger">{formik.errors.name}</p>
+            ) : null}
+            <br />
+
             <label className="form-label">Email</label>
             <input
               name="email"
@@ -96,4 +116,4 @@ function LoginAuth({ loading, setLoading }) {
   );
 }
 
-export default LoginAuth;
+export default SignupAuth;

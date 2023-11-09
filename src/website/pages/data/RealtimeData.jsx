@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Container, Spinner } from "react-bootstrap";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "../App.css";
 import { Link } from "react-router-dom";
+import { Button, Container, Spinner } from "react-bootstrap";
+import "react-toastify/dist/ReactToastify.css";
+import "../css/App.css";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 function RealTimeData({ loading, setLoading, btnLoading, setBtnLoading }) {
   const [realTimeData, setRealTimeData] = useState([]);

@@ -1,14 +1,14 @@
-import { useFormik } from "formik";
-import { Button, Container, Spinner } from "react-bootstrap";
-import "react-toastify/dist/ReactToastify.css";
-import * as Yup from "yup";
-import "../App.css";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { addDoc, doc, getDoc, setDoc } from "firebase/firestore";
-import { formDataRef } from "../lib/firestore.collaction";
-import { toast } from "react-toastify";
-import { db } from "../lib/init-firebase";
 import { useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Button, Container, Spinner } from "react-bootstrap";
+import { addDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { formDataRef } from "../../library/firestore.collaction";
+import { db } from "../../library/init-firebase";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import "react-toastify/dist/ReactToastify.css";
+import "../css/App.css";
+import { toast } from "react-toastify";
 
 function FireStoreForm({ loading, setLoading }) {
   const location = useLocation();
@@ -56,7 +56,7 @@ function FireStoreForm({ loading, setLoading }) {
       }
       setLoading(false);
       formik.resetForm();
-      navigate("/");
+      navigate("/firestoreData");
     },
   });
 

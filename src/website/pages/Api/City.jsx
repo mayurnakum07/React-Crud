@@ -1,26 +1,17 @@
-import { deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Button, Container, Spinner } from "react-bootstrap";
-import { formDataRef } from "../lib/firestore.collaction";
 import { Link } from "react-router-dom";
-import { db } from "../lib/init-firebase";
+import { Button, Container, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
-  const [firestoreData, setFirestoreData] = useState([]);
-  useEffect(() => {
-    console.log("FireStoreData", firestoreData);
-  }, [firestoreData]);
+function City({ loading, setLoading, btnLoading, setBtnLoading, theme }) {
+  const [cityData, setCityData] = useState([]);
 
-  const getFormData = async () => {
-    setLoading(true);
+  const feachCityData = async () => {
     try {
-      const response = await getDocs(formDataRef);
-      const data = response.docs.map((doc) => ({
-        data: doc.data(),
-        id: doc.id,
-      }));
-      setFirestoreData(data);
+      setLoading(true);
+      const response = await axios.get("https://api.metaestate.ai/api/v1/city");
+      setCityData(response.data.data);
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -28,16 +19,17 @@ function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
     }
   };
   useEffect(() => {
-    getFormData();
+    feachCityData();
   }, []);
 
-  const deleteFormData = async (id) => {
-    const docRef = doc(db, "form-data", id);
+  const deleteCityData = async (id) => {
     try {
       setBtnLoading(id);
-      await deleteDoc(docRef);
-      getFormData();
-      toast.success("Data deleted successfully");
+      const response = await axios.delete(
+        `https://api.metaestate.ai/api/v1/city/${id}`
+      );
+      feachCityData();
+      toast.success(response.data.message);
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -48,7 +40,7 @@ function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
   return (
     <div>
       <Container>
-        <h1 className="text-center mt-4">FireStore Data</h1>
+        <h1 className="text-center mt-4">Citys</h1>
         {loading ? (
           <div style={{ position: "absolute", right: "50%" }}>
             <div className="loader-container">
@@ -57,33 +49,34 @@ function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
           </div>
         ) : (
           <div>
-            <Link to="/addFireStoreData">
+            <Link to="/addCity">
               <Button className="mb-3 float-end">Add New Data</Button>
             </Link>
             <br />
-
-            <table className="table table-hover table-bordered text-center">
-              <thead>
+            <table
+              className={`table ${
+                theme && "table-dark"
+              } table-hover table-bordered text-center`}
+            >
+              <thead className="table-primary">
                 <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Age</th>
-                  <th>Message</th>
+                  <th>ID</th>
+                  <th>country-name</th>
+                  <th>State-name</th>
+                  <th>City-name</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
-                {firestoreData.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.data.name}</td>
-                    <td>{item.data.email}</td>
-                    <td>{item.data.password}</td>
-                    <td>{item.data.age}</td>
-                    <td>{item.data.message}</td>
+                {cityData.map((item) => (
+                  <tr key={item.city_id}>
+                    <td>{item.city_id}</td>
+                    <td>{item.master_state.master_country.country_name}</td>
+                    <td>{item.master_state.state_name}</td>
+                    <td>{item.city_name}</td>
                     <td>
-                      <Link to={`/updateData/${item.id}`}>
+                      <Link to={`/updateCity/${item.city_id}`}>
                         <Button>
                           Edit{" "}
                           <i
@@ -96,10 +89,10 @@ function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
                     <td>
                       <Button
                         className="bg-danger"
-                        onClick={() => deleteFormData(item.id)}
-                        disabled={btnLoading === item.id}
+                        onClick={() => deleteCityData(item.city_id)}
+                        disabled={btnLoading === item.city_id}
                       >
-                        {btnLoading === item.id ? (
+                        {btnLoading === item.city_id ? (
                           <Spinner animation="border" size="sm"></Spinner>
                         ) : (
                           <div>
@@ -124,4 +117,4 @@ function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
   );
 }
 
-export default FireStoreData;
+export default City;
