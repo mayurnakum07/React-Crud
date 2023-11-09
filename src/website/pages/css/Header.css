@@ -34,3 +34,18 @@ a {
   color: white;
 }
 
+.Dark-mode {
+  background-color: rgb(35, 35, 35);
+  color: white;
+}
+
+.Light-mode {
+  background-color: white;
+  color: black;
+}
+
+.icon {
+  font-size: 30px;
+  color: white;
+  margin: 12px;
+}

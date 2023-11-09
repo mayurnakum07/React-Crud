@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { Button, Container, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useDarkMode } from "../../theme/Theme";
 
-function Country({ loading, setLoading, btnLoading, setBtnLoading }) {
+function Country({ loading, setLoading, btnLoading, setBtnLoading, theme }) {
   const [countryData, setCountryData] = useState([]);
 
   const feachCountryData = async () => {
@@ -56,7 +57,11 @@ function Country({ loading, setLoading, btnLoading, setBtnLoading }) {
               <Button className="mb-3 float-end">Add New Data</Button>
             </Link>
             <br />
-            <table className="table table-hover table-bordered text-center">
+            <table
+              className={`table ${
+                theme && "table-dark"
+              } table-hover table-bordered text-center`}
+            >
               <thead className="table-primary">
                 <tr>
                   <th>ID</th>

@@ -6,7 +6,13 @@ import "../css/App.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-function RealTimeData({ loading, setLoading, btnLoading, setBtnLoading }) {
+function RealTimeData({
+  loading,
+  setLoading,
+  btnLoading,
+  setBtnLoading,
+  theme,
+}) {
   const [realTimeData, setRealTimeData] = useState([]);
 
   const getRealtimeData = async () => {
@@ -66,7 +72,11 @@ function RealTimeData({ loading, setLoading, btnLoading, setBtnLoading }) {
             </Link>
             <br />
 
-            <table className="table table-hover table-bordered text-center">
+            <table
+              className={`table ${
+                theme && "table-dark"
+              } table-hover table-bordered text-center`}
+            >
               <thead>
                 <tr>
                   <th>Name</th>

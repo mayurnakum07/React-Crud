@@ -1,5 +1,5 @@
 import { Button, Container } from "react-bootstrap";
-
+import "../css/Dashboard.css";
 function Dashboard() {
   return (
     <div>

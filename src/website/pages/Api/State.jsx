@@ -57,7 +57,7 @@ function State({ loading, setLoading, btnLoading, setBtnLoading, theme }) {
             <table
               className={`table ${
                 theme && "table-dark"
-              } table-hover table-bordered text-center `}
+              } table-hover table-bordered text-center`}
             >
               <thead className="table-primary">
                 <tr>

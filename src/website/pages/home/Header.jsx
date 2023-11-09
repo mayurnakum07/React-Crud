@@ -1,7 +1,20 @@
 import { Button, Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import "../css/Header.css";
 import { Link } from "react-router-dom";
+import { useDarkMode } from "../../theme/Theme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 function Header({ name, handleLogout }) {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
+  useEffect(() => {
+    document.body.className = isDarkMode ? "Dark-mode" : "Light-mode";
+    return () => {
+      document.body.className = "";
+    };
+  }, [isDarkMode]);
+
   return (
     <div>
       <Navbar
@@ -124,6 +137,15 @@ function Header({ name, handleLogout }) {
                 </Link>
               </div>
             )}
+
+            <div
+              onClick={toggleDarkMode}
+            >
+              <FontAwesomeIcon
+                className={`${isDarkMode ? "icon" : "icon"}`}
+                icon={isDarkMode ? faSun : faMoon}
+              />
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -19,11 +19,12 @@ import City from "../pages/Api/City";
 import CityForm from "../pages/Api/CityForm";
 import { auth } from "../library/init-firebase";
 import { getAuth, signOut } from "firebase/auth";
+import { useDarkMode } from "../theme/Theme";
 export default function App() {
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(null);
   const [userName, setUserName] = useState("");
-
+  const { isDarkMode } = useDarkMode();
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -57,6 +58,7 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
+              theme={isDarkMode}
             />
           }
         />
@@ -76,6 +78,7 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
+              theme={isDarkMode}
             />
           }
         />
@@ -103,6 +106,7 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
+              theme={isDarkMode}
             />
           }
         />
@@ -122,6 +126,7 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
+              theme={isDarkMode}
             />
           }
         />
@@ -141,6 +146,7 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
+              theme={isDarkMode}
             />
           }
         />

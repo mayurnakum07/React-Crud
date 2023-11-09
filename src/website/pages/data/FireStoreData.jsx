@@ -6,7 +6,13 @@ import { formDataRef } from "../../library/firestore.collaction";
 import { db } from "../../library/init-firebase";
 import { toast } from "react-toastify";
 
-function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
+function FireStoreData({
+  loading,
+  setLoading,
+  btnLoading,
+  setBtnLoading,
+  theme,
+}) {
   const [firestoreData, setFirestoreData] = useState([]);
   useEffect(() => {
     console.log("FireStoreData", firestoreData);
@@ -62,7 +68,11 @@ function FireStoreData({ loading, setLoading, btnLoading, setBtnLoading }) {
             </Link>
             <br />
 
-            <table className="table table-hover table-bordered text-center">
+            <table
+              className={`table ${
+                theme && "table-dark"
+              } table-hover table-bordered text-center`}
+            >
               <thead>
                 <tr>
                   <th>Name</th>
