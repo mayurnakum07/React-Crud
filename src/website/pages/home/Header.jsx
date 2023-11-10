@@ -2,8 +2,6 @@ import { Button, Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import "../css/Header.css";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../../theme/Theme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 function Header({ name, handleLogout }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -59,8 +57,7 @@ function Header({ name, handleLogout }) {
                   </Dropdown.Item>
                   <Dropdown.Item>
                     <Link to="/realTimeData" className="link-deep">
-                      {" "}
-                      Realtime-data{" "}
+                      Realtime-data
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>

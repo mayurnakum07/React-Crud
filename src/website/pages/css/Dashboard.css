@@ -1,0 +1,210 @@
+/* In your CSS file */
+.hero-banner {
+  padding: 50px;
+  text-align: center;
+}
+
+.hero-banner h1 {
+  font-size: 3rem;
+}
+
+.hero-banner p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.hero-banner button {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  background: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.hero-banner button:hover {
+  background: #2980b9;
+}
+
+/* In your CSS file */
+.features {
+  padding: 50px;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2.5rem;
+}
+
+.feature-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.feature-item {
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.feature-item h3 {
+  font-size: 1.5rem;
+}
+
+/* In your CSS file */
+.testimonials {
+  padding: 50px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+}
+
+.testimonial-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.testimonial-item {
+  width: 40%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+/* Testimonials section */
+.testimonials {
+  padding: 50px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+}
+
+.testimonial-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.testimonial {
+  width: 40%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+/* Call-to-Action section */
+.call-to-action {
+  background: #333;
+  color: #fff;
+  padding: 50px;
+  text-align: center;
+}
+
+.call-to-action h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.call-to-action p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.call-to-action button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background: #ff9900;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.call-to-action button:hover {
+  background: #e68300;
+}
+
+/* About section */
+.about-section {
+  padding: 50px;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* Services section */
+.services-section {
+  padding: 50px;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 2.5rem;
+}
+
+.service-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.service-item {
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.service-item h3 {
+  font-size: 1.5rem;
+}
+
+/* Footer section */
+.footer {
+  background: #333;
+
+  padding: 30px 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
