@@ -24,7 +24,8 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(null);
   const [userName, setUserName] = useState("");
-  const { isDarkMode } = useDarkMode();
+  const { isDarkTable, toggleDarkTable } = useDarkMode();
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -58,7 +59,8 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
-              theme={isDarkMode}
+              theme={isDarkTable}
+              toggle={toggleDarkTable}
             />
           }
         />
@@ -78,7 +80,8 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
-              theme={isDarkMode}
+              theme={isDarkTable}
+              toggle={toggleDarkTable}
             />
           }
         />
@@ -106,7 +109,8 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
-              theme={isDarkMode}
+              theme={isDarkTable}
+              toggle={toggleDarkTable}
             />
           }
         />
@@ -126,7 +130,8 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
-              theme={isDarkMode}
+              theme={isDarkTable}
+              toggle={toggleDarkTable}
             />
           }
         />
@@ -146,7 +151,8 @@ export default function App() {
               setLoading={setLoading}
               btnLoading={btnLoading}
               setBtnLoading={setBtnLoading}
-              theme={isDarkMode}
+              theme={isDarkTable}
+              toggle={toggleDarkTable}
             />
           }
         />

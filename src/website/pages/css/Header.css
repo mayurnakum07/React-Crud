@@ -48,4 +48,19 @@ a {
   font-size: 30px;
   color: white;
   margin: 12px;
+  cursor: pointer;
+}
+
+.icon:hover {
+opacity: .8;
+}
+
+.icon2 {
+  font-size: 30px;
+  margin: 12px;
+  cursor: pointer;
+}
+
+.icon2:hover {
+  opacity: .8;
 }

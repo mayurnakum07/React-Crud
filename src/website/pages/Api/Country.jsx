@@ -5,7 +5,14 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useDarkMode } from "../../theme/Theme";
 
-function Country({ loading, setLoading, btnLoading, setBtnLoading, theme }) {
+function Country({
+  loading,
+  setLoading,
+  btnLoading,
+  setBtnLoading,
+  theme,
+  toggle,
+}) {
   const [countryData, setCountryData] = useState([]);
 
   const feachCountryData = async () => {
@@ -57,6 +64,18 @@ function Country({ loading, setLoading, btnLoading, setBtnLoading, theme }) {
               <Button className="mb-3 float-end">Add New Data</Button>
             </Link>
             <br />
+
+            <div
+              onClick={toggle}
+              className={`${theme ? "icon2" : "icon2"} float-start`}
+            >
+              {theme ? (
+                <i className="bi bi-sun-fill"></i>
+              ) : (
+                <i className="bi bi-moon-stars-fill"></i>
+              )}
+            </div>
+
             <table
               className={`table ${
                 theme && "table-dark"

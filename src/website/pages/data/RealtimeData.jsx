@@ -12,6 +12,7 @@ function RealTimeData({
   btnLoading,
   setBtnLoading,
   theme,
+  toggle,
 }) {
   const [realTimeData, setRealTimeData] = useState([]);
 
@@ -71,6 +72,17 @@ function RealTimeData({
               <Button className="mb-3 float-end">Add New Data</Button>
             </Link>
             <br />
+
+            <div
+              onClick={toggle}
+              className={`${theme ? "icon2" : "icon2"} float-start`}
+            >
+              {theme ? (
+                <i className="bi bi-sun-fill"></i>
+              ) : (
+                <i className="bi bi-moon-stars-fill"></i>
+              )}
+            </div>
 
             <table
               className={`table ${

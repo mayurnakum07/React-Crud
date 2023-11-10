@@ -138,13 +138,15 @@ function Header({ name, handleLogout }) {
               </div>
             )}
 
-            <div
-              onClick={toggleDarkMode}
-            >
-              <FontAwesomeIcon
-                className={`${isDarkMode ? "icon" : "icon"}`}
-                icon={isDarkMode ? faSun : faMoon}
-              />
+            <div onClick={toggleDarkMode}>
+              <div className={`${isDarkMode ? "icon" : "icon"}`}>
+                {" "}
+                {isDarkMode ? (
+                  <i className="bi bi-sun-fill"></i>
+                ) : (
+                  <i className="bi bi-moon-stars-fill"></i>
+                )}
+              </div>
             </div>
           </Navbar.Collapse>
         </Container>
