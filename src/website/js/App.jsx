@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import Header from "../pages/home/Header";
+import Header from "../pages/Home/Header";
 import "../pages/css/App.css";
-import Dashboard from "../pages/home/Dashboard";
-import FireStoreData from "../pages/data/FireStoreData";
-import FireStoreForm from "../Pages/data/FireStoreForm";
-import RealTimeData from "../Pages/data/RealtimeData";
-import RealtimeForm from "../Pages/data/RealtimeForm";
-import Storage from "../Pages/data/Storage";
+import Dashboard from "../pages/Home/Dashboard";
+import FireStoreData from "../pages/Firebase/FireStoreData";
+import FireStoreForm from "../Pages/Firebase/FireStoreForm";
+import RealTimeData from "../Pages/Firebase/RealtimeData";
+import RealtimeForm from "../Pages/Firebase/RealtimeForm";
 import LoginAuth from "../Pages/Auth/Login-Auth";
 import SignupAuth from "../Pages/Auth/Signup-Auth";
 import Country from "../pages/Api/Country";
@@ -20,6 +19,10 @@ import CityForm from "../pages/Api/CityForm";
 import { auth } from "../library/init-firebase";
 import { getAuth, signOut } from "firebase/auth";
 import { useDarkMode } from "../theme/Theme";
+import Usestate from "../pages/Hooks/Usestate";
+import UseEffect from "../pages/Hooks/Useeffect";
+import Useref from "../pages/Hooks/Useref";
+import Usereducer from "../pages/Hooks/Usereducer";
 export default function App() {
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(null);
@@ -51,6 +54,11 @@ export default function App() {
       <Header name={userName} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/useState" element={<Usestate />} />
+        <Route path="/useEffect" element={<UseEffect />} />
+        <Route path="/useRef" element={<Useref />} />
+        <Route path="/useReducer" element={<Usereducer />} />
+
         <Route
           path="/firestoreData"
           element={
@@ -96,10 +104,6 @@ export default function App() {
         <Route
           path="/loginAuth"
           element={<LoginAuth loading={loading} setLoading={setLoading} />}
-        />
-        <Route
-          path="/cloudStorage"
-          element={<Storage loading={loading} setLoading={setLoading} />}
         />
         <Route
           path="/country"

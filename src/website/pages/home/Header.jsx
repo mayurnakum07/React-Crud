@@ -47,6 +47,37 @@ function Header({ name, handleLogout }) {
                   variant="transparent"
                   style={{ color: "white", fontSize: "20px" }}
                 >
+                  Hooks
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <Link to="/useState" className="link-deep">
+                      UseState
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/useEffect" className="link-deep">
+                      UseEffect
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/useReducer" className="link-deep">
+                      UseReducer
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/useRef" className="link-deep">
+                      UseRef
+                    </Link>
+                  </Dropdown.Item>
+                  <hr className="dropdown-divider" />
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="transparent"
+                  style={{ color: "white", fontSize: "20px" }}
+                >
                   Firebase
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -58,12 +89,6 @@ function Header({ name, handleLogout }) {
                   <Dropdown.Item>
                     <Link to="/realTimeData" className="link-deep">
                       Realtime-data
-                    </Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link to="/cloudStorage" className="link-deep">
-                      {" "}
-                      Cloud-storage{" "}
                     </Link>
                   </Dropdown.Item>
                   <hr className="dropdown-divider" />
