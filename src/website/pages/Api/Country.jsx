@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useDarkMode } from "../../theme/Theme";
 
 function Country({
   loading,
