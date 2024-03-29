@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Button, Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import "../css/Header.css";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../../theme/Theme";
 import { useEffect } from "react";
-function Header({ name, handleLogout }) {
+function Manubar({ name, handleLogout }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   useEffect(() => {
@@ -177,4 +178,4 @@ function Header({ name, handleLogout }) {
   );
 }
 
-export default Header;
+export default Manubar;

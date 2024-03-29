@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import Header from "../pages/Home/Header";
 import "../pages/css/App.css";
 import Dashboard from "../pages/Home/Dashboard";
 import FireStoreData from "../pages/Firebase/FireStoreData";
@@ -23,6 +22,7 @@ import Usestate from "../pages/Hooks/Usestate";
 import UseEffect from "../pages/Hooks/Useeffect";
 import Useref from "../pages/Hooks/Useref";
 import Usereducer from "../pages/Hooks/Usereducer";
+import Manubar from "../pages/home/Manubar";
 export default function App() {
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(null);
@@ -51,7 +51,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ToastContainer />
-      <Header name={userName} handleLogout={handleLogout} />
+      <Manubar name={userName} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/useState" element={<Usestate />} />
